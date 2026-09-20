@@ -1,0 +1,3 @@
+settings.yml and config.py have different keys.
+config.py has "raw", "source", etc.
+settings.yml has "{key}_dir" at the end.
