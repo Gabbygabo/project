@@ -1,0 +1,25 @@
+EVIDENCE:
+
+(.venv) C:\Users\Lenovo Thinkpad T460\project>git switch -c goal1-reproducible-environment
+Switched to a new branch 'goal1-reproducible-environment'
+
+(.venv) C:\Users\Lenovo Thinkpad T460\project>git add .
+
+(.venv) C:\Users\Lenovo Thinkpad T460\project>git commit -m "feat: add reproducible pipeline environment (Task 7.5)"
+On branch goal1-reproducible-environment
+nothing to commit, working tree clean
+
+(.venv) C:\Users\Lenovo Thinkpad T460\project>git log --oneline --decorate -5
+0903cfc (HEAD -> goal1-reproducible-environment, origin/main, origin/HEAD, main)  Verified virtual environment, Evaluated the src modules pipeline, removed secrets in other files, built pipeline image and verified schemas/tables exists. (Task 7.1 to 7.4)
+45591b8 .gitignore created, done initial setup (6)
+3f0efc0 Update staging.py
+366f71f Update curated.py
+0ecc06d Update postgres.py
+
+(.venv) C:\Users\Lenovo Thinkpad T460\project>docker compose ps
+NAME               IMAGE         COMMAND                  SERVICE    CREATED       STATUS                 PORTS
+dss150p-postgres   postgres:16   "docker-entrypoint.s…"   postgres   2 hours ago   Up 2 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+
+
+**EXPLANATION:** 
+The config.py module acts as the single translator, loading both sources and exposing them as usable settings, ensuring reproducibility and keeping secrets out of committed code.
