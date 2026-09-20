@@ -1,0 +1,8 @@
+inside the extract folder, there are __init__.py and files.py
+inside the transform folder, there are __init__.py and curated.py and stating.py
+inside the load folder, there are __init__.py and postgres.py
+inside the validate folder, there are __init__.py and quality.py
+inside the benchmark folder, there are __init__py. and storage.py
+lastly, there is a cli.py in src folder
+
+**All of these are inside the src folder, after inspecting, each module have one primary responsibility.

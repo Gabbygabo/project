@@ -1,0 +1,2 @@
+The virtual environment should not be committed to Git because it is machine-specific, large in size, and unnecessary for reproducibility.
+The requirements.txt will handle it instead as it is more lightweight and without needing my own .venv.
