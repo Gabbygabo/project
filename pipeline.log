@@ -1,0 +1,135 @@
+2026-09-20 20:21:06,136 [INFO] Starting full pipeline for run_id=run_20260920T122106Z_6cc17c3f
+2026-09-20 20:21:10,421 [ERROR] Run-all failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 100, in main
+    load_curated(curated, run_id)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 48, in upsert_curated
+    cur.execute(upsert_sql, row.to_dict())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedTable: relation "curated.sales_order_lines" does not exist
+LINE 2:     INSERT INTO curated.sales_order_lines (
+                        ^
+2026-09-20 20:30:23,631 [INFO] Starting full pipeline for run_id=run_20260920T123023Z_293913f4
+2026-09-20 20:30:27,291 [ERROR] Run-all failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\_queries.py", line 159, in validate_and_reorder_params
+    return [vars[item] for item in order]  # type: ignore[call-overload]
+            ~~~~^^^^^^
+KeyError: 'customer_city'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 100, in main
+    load_curated(curated, run_id)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 58, in upsert_curated
+    cur.execute(upsert_sql, row.to_dict())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.ProgrammingError: query parameter missing: customer_city, product_name
+2026-09-20 20:33:59,190 [INFO] Starting full pipeline for run_id=run_20260920T123359Z_ba88fedd
+2026-09-20 20:34:02,900 [ERROR] Run-all failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\_queries.py", line 159, in validate_and_reorder_params
+    return [vars[item] for item in order]  # type: ignore[call-overload]
+            ~~~~^^^^^^
+KeyError: 'customer_city'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 100, in main
+    load_curated(curated, run_id)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 62, in upsert_curated
+    cur.execute(upsert_sql, row.to_dict())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.ProgrammingError: query parameter missing: customer_city, product_name
+2026-09-20 20:49:04,722 [INFO] Starting full pipeline for run_id=run_20260920T124904Z_008563a8
+2026-09-20 20:49:23,711 [ERROR] Run-all failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 100, in main
+    load_curated(curated, run_id)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 62, in upsert_curated
+    cur.execute(upsert_sql, row.to_dict())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.ProgrammingError: cannot adapt type 'dict' using placeholder '%s' (format: AUTO)
+2026-09-20 20:54:12,980 [INFO] Starting full pipeline for run_id=run_20260920T125412Z_4b1cbd70
+2026-09-20 20:54:14,325 [ERROR] Run-all failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'tier'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 94, in main
+    curated, orphans = build_curated(staged, run_id)
+                       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\transform\curated.py", line 40, in build_curated
+    curated["customer_tier"] = curated["tier"]
+                               ~~~~~~~^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'tier'
+2026-09-20 20:56:47,114 [INFO] Starting full pipeline for run_id=run_20260920T125647Z_dba4be46
+2026-09-20 20:56:50,601 [ERROR] Run-all failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 100, in main
+    load_curated(curated, run_id)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 62, in upsert_curated
+    cur.execute(upsert_sql, row.to_dict())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.ProgrammingError: cannot adapt type 'dict' using placeholder '%s' (format: AUTO)
+2026-09-20 20:59:33,400 [INFO] Starting full pipeline for run_id=run_20260920T125933Z_e8afdbe0
+2026-09-20 20:59:41,297 [ERROR] Run-all failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 100, in main
+    load_curated(curated, run_id)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 62, in upsert_curated
+    cur.execute(upsert_sql, row.to_dict())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedTable: relation "curated.sales_order_lines" does not exist
+LINE 2:     INSERT INTO curated.sales_order_lines (
+                        ^
+2026-09-20 21:20:07,992 [INFO] Starting full pipeline for run_id=run_20260920T132007Z_3dffcd82
+2026-09-20 21:20:13,210 [ERROR] Run-all failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 100, in main
+    load_curated(curated, run_id)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 62, in upsert_curated
+    cur.execute(upsert_sql, row.to_dict())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedTable: relation "curated.sales_order_lines" does not exist
+LINE 2:     INSERT INTO curated.sales_order_lines (
+                        ^
+2026-09-20 21:22:27,426 [INFO] Starting full pipeline for run_id=run_20260920T132227Z_1ff5112e
+2026-09-20 21:29:10,464 [INFO] Starting load into PostgreSQL for run_id=run_20260920T132227Z_1ff5112e
+2026-09-20 21:30:33,865 [INFO] Starting load into PostgreSQL for run_id=run_20260920T132227Z_1ff5112e
