@@ -1,0 +1,40 @@
+=== Storage Benchmark Summary ===
+
+Format: Parquet
+  size: 6450081
+  write_time_median: 0.33251139998901635
+  full_read_median: 0.14384519995655864
+  filtered_read_median: 0.004068100010044873
+  rows: 49933
+
+Format: CSV
+  size: 35041952
+  write_time_median: 5.39603259996511
+  full_read_median: 0.9877629999537021
+  filtered_read_median: 0.0033077000407502055
+  rows: 49933
+
+Format: Postgres
+  size: 18595840
+  write_time_median: None
+  full_read_median: 1.9044528000522405
+  filtered_read_median: 0.018956199986860156
+  rows: 49933
+
+Format: JSONL
+  size: 58398599
+  write_time_median: 4.179157099919394
+  full_read_median: 3.0888511000666767
+  filtered_read_median: 0.007493300014175475
+  rows: 49933
+
+
+Based on the result, in terms of write_time_median, Parquet has the lowest write_time_median. Whereas, csx got the highest.
+On the other hand, in terms of full_read_median, Parquet still has the lowest, and JSONL got the highest.
+Lastly, in terms of filtered_read_median, CSV got the lowest, and postgres was the highest.
+
+For context, I am using a Laptop Lenovo Thinkpad T460 and has a following specs:
+CPU: Intel Core i5‑6300U @ 2.40 GHz (dual‑core, 4 threads)
+RAM: 8 GB DDR4
+Storage: 256 GB SSD
+Operating System: Windows 11 Pro 64‑bit

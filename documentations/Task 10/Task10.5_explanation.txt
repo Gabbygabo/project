@@ -1,0 +1,1 @@
+I renamed orders.csv to have a missing source. The DAG failed and retried, with logs showing the error and failure callback as shown in the evidences in Task 10. After restoring the file, I cleared the failed task and re‑ran the DAG, which completed successfully. This was safe to rerun because the source data was never corrupted but sonly temporarily unavailable.

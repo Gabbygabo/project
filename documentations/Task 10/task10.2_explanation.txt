@@ -1,0 +1,3 @@
+For schedule, the daily cron sched is at 2am because this is outside the business hours. Meaning, it avoids the busy hours on daytime and also ensure that the data is refreshed and validated before the next business day begins.
+
+For catch-up behavior, it's explicitly disable catch-up so Airflow will not try to backfill all past dates since the start date. Thus, avoiding the overwhelming of the system with unnecessary historical runs.

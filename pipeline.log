@@ -133,3 +133,148 @@ LINE 2:     INSERT INTO curated.sales_order_lines (
 2026-09-20 21:22:27,426 [INFO] Starting full pipeline for run_id=run_20260920T132227Z_1ff5112e
 2026-09-20 21:29:10,464 [INFO] Starting load into PostgreSQL for run_id=run_20260920T132227Z_1ff5112e
 2026-09-20 21:30:33,865 [INFO] Starting load into PostgreSQL for run_id=run_20260920T132227Z_1ff5112e
+2026-09-21 18:30:07,225 [INFO] Starting partition load for year=2026, month=1, run_id=run_20260921T103007Z_7c345014
+2026-09-21 18:30:07,226 [ERROR] Load-partition failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 114, in main
+    row_count = load_partition(args.year, args.month, run_id)
+TypeError: load_partition() missing 1 required positional argument: 'run_id'
+2026-09-21 18:37:35,789 [INFO] Starting partition load for year=2026, month=1, run_id=run_20260921T103735Z_ad21cae8
+2026-09-21 18:37:35,790 [ERROR] Load-partition failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 114, in main
+    row_count = load_partition(args.year, args.month, run_id)
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 72, in load_partition
+    partition_path = path_for("partitioned") / f"order_year={year}" / f"order_month={month}"
+                     ~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\config.py", line 26, in path_for
+    return PROJECT_ROOT / SETTINGS["pipeline"][key]
+                          ~~~~~~~~~~~~~~~~~~~~^^^^^
+KeyError: 'partitioned'
+2026-09-21 18:52:09,894 [INFO] Starting partition load for year=2026, month=1, run_id=run_20260921T105209Z_7ef7200f
+2026-09-21 18:52:16,808 [ERROR] Load-partition failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 114, in main
+    row_count = load_partition(args.year, args.month, run_id)
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 87, in load_partition
+    cur.execute(
+    ~~~~~~~~~~~^
+        "INSERT INTO audit.partition_loads (year, month, run_id, row_count) VALUES (%s, %s, %s, %s)",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (year, month, run_id, count)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedColumn: column "year" of relation "partition_loads" does not exist
+LINE 1: INSERT INTO audit.partition_loads (year, month, run_id, row_...
+                                           ^
+2026-09-21 19:05:16,420 [INFO] Starting partition load for year=2026, month=1, run_id=run_20260921T110516Z_b83a96d4
+2026-09-21 19:07:52,260 [INFO] Starting partition load for year=2026, month=1, run_id=run_20260921T110752Z_8e32f3fa
+2026-09-21 19:07:57,112 [ERROR] Load-partition failed for run_id=None
+Traceback (most recent call last):
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 114, in main
+    row_count = load_partition(args.year, args.month, run_id)
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 91, in load_partition
+    cur.execute(
+    ~~~~~~~~~~~^
+        "INSERT INTO audit.partition_loads (partition_key, loaded_at_utc, row_count, pipeline_run_id) VALUES (%s, %s, %s, %s)",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (partition_key, loaded_at_utc, count, run_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UniqueViolation: duplicate key value violates unique constraint "partition_loads_pkey"
+DETAIL:  Key (partition_key)=(2026-01) already exists.
+2026-09-21 19:22:32,218 [INFO] Starting full pipeline for run_id=run_20260921T112232Z_17343c01
+2026-09-21 21:21:05,017 [INFO] Starting extraction for run_id=test, mode=full, year=2026, month=3
+2026-09-21 13:22:41,192 [INFO] Starting extraction for run_id=manual__2026-09-21T13:22:08+00:00, mode=full, year=2025, month=3
+2026-09-21 13:32:39,028 [INFO] Starting extraction for run_id=manual__2026-09-21T13:32:22+00:00, mode=full, year=2026, month=6
+2026-09-21 13:32:46,150 [INFO] Starting staging for run_id=manual__2026-09-21T13:32:22+00:00
+2026-09-21 13:32:56,500 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T13:32:22+00:00
+2026-09-21 13:32:56,535 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T13:32:22+00:00
+2026-09-21 13:32:56,537 [ERROR] Load failed for run_id=manual__2026-09-21T13:32:22+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T13:32:22+00:00/orders_curated.parquet'
+2026-09-21 13:34:03,144 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T13:32:22+00:00
+2026-09-21 13:34:03,174 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T13:32:22+00:00
+2026-09-21 13:34:03,176 [ERROR] Load failed for run_id=manual__2026-09-21T13:32:22+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T13:32:22+00:00/orders_curated.parquet'
+2026-09-21 13:35:10,478 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T13:32:22+00:00
+2026-09-21 13:35:10,505 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T13:32:22+00:00
+2026-09-21 13:35:10,506 [ERROR] Load failed for run_id=manual__2026-09-21T13:32:22+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T13:32:22+00:00/orders_curated.parquet'
+2026-09-21 13:40:31,411 [INFO] Starting extraction for run_id=manual__2026-09-21T13:40:12+00:00, mode=full, year=2026, month=5
+2026-09-21 13:40:39,580 [INFO] Starting staging for run_id=manual__2026-09-21T13:40:12+00:00
+2026-09-21 13:40:47,506 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T13:40:12+00:00
+2026-09-21 13:40:47,566 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T13:40:12+00:00
+2026-09-21 13:40:47,568 [ERROR] Load failed for run_id=manual__2026-09-21T13:40:12+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T13:40:12+00:00/orders_curated.parquet'
+2026-09-21 13:41:54,275 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T13:40:12+00:00
+2026-09-21 13:41:54,300 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T13:40:12+00:00
+2026-09-21 13:41:54,301 [ERROR] Load failed for run_id=manual__2026-09-21T13:40:12+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T13:40:12+00:00/orders_curated.parquet'
+2026-09-21 13:43:00,720 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T13:40:12+00:00
+2026-09-21 13:43:00,742 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T13:40:12+00:00
+2026-09-21 13:43:00,743 [ERROR] Load failed for run_id=manual__2026-09-21T13:40:12+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T13:40:12+00:00/orders_curated.parquet'
+2026-09-21 13:48:59,934 [INFO] Starting extraction for run_id=manual__2026-09-21T13:48:10+00:00, mode=full, year=2026, month=9
+2026-09-21 13:49:06,312 [INFO] Starting staging for run_id=manual__2026-09-21T13:48:10+00:00
+2026-09-21 13:49:14,323 [INFO] Starting curated transformation for run_id=manual__2026-09-21T13:48:10+00:00
+2026-09-21 13:49:15,775 [ERROR] Curate failed for run_id=manual__2026-09-21T13:48:10+00:00
+Traceback (most recent call last):
+  File "/opt/airflow/project/src/cli.py", line 76, in main
+    curated, orphans = build_curated(staged, args.run_id)
+    ^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable NoneType object
+2026-09-21 13:50:24,799 [INFO] Starting curated transformation for run_id=manual__2026-09-21T13:48:10+00:00
+2026-09-21 13:50:27,069 [ERROR] Curate failed for run_id=manual__2026-09-21T13:48:10+00:00
+Traceback (most recent call last):
+  File "/opt/airflow/project/src/cli.py", line 76, in main
+    curated, orphans = build_curated(staged, args.run_id)
+    ^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable NoneType object
+2026-09-21 13:51:49,232 [INFO] Starting curated transformation for run_id=manual__2026-09-21T13:48:10+00:00
+2026-09-21 13:51:56,435 [ERROR] Curate failed for run_id=manual__2026-09-21T13:48:10+00:00
+Traceback (most recent call last):
+  File "/opt/airflow/project/src/cli.py", line 76, in main
+    curated, orphans = build_curated(staged, args.run_id)
+    ^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable NoneType object
+2026-09-21 13:53:23,025 [INFO] Starting extraction for run_id=manual__2026-09-21T13:53:08+00:00, mode=full, year=2026, month=9
+2026-09-21 13:53:29,556 [INFO] Starting staging for run_id=manual__2026-09-21T13:53:08+00:00
+2026-09-21 13:53:38,772 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T13:53:08+00:00
+2026-09-21 13:53:38,806 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T13:53:08+00:00
+2026-09-21 13:53:38,809 [ERROR] Load failed for run_id=manual__2026-09-21T13:53:08+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T13:53:08+00:00/orders_curated.parquet'
+2026-09-21 13:54:49,013 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T13:53:08+00:00
+2026-09-21 13:54:49,047 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T13:53:08+00:00
+2026-09-21 13:54:49,048 [ERROR] Load failed for run_id=manual__2026-09-21T13:53:08+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T13:53:08+00:00/orders_curated.parquet'
+2026-09-21 13:56:08,916 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T13:53:08+00:00
+2026-09-21 13:56:08,986 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T13:53:08+00:00
+2026-09-21 13:56:08,988 [ERROR] Load failed for run_id=manual__2026-09-21T13:53:08+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T13:53:08+00:00/orders_curated.parquet'
+2026-09-21 14:16:44,047 [INFO] Starting extraction for run_id=manual__2026-09-21T14:16:31+00:00, mode=full, year=2026, month=9
+2026-09-21 14:16:48,665 [INFO] Starting staging for run_id=manual__2026-09-21T14:16:31+00:00
+2026-09-21 14:16:54,751 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T14:16:31+00:00
+2026-09-21 14:16:54,772 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T14:16:31+00:00
+2026-09-21 14:16:54,773 [ERROR] Load failed for run_id=manual__2026-09-21T14:16:31+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T14:16:31+00:00/orders_curated.parquet'
+2026-09-21 14:18:04,466 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T14:16:31+00:00
+2026-09-21 14:18:04,490 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T14:16:31+00:00
+2026-09-21 14:18:04,492 [ERROR] Load failed for run_id=manual__2026-09-21T14:16:31+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T14:16:31+00:00/orders_curated.parquet'
+2026-09-21 14:19:24,271 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T14:16:31+00:00
+2026-09-21 14:19:24,319 [ERROR] Load failed: curated parquet not found for run_id=manual__2026-09-21T14:16:31+00:00
+2026-09-21 14:19:24,321 [ERROR] Load failed for run_id=manual__2026-09-21T14:16:31+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/curated/run_id=manual__2026-09-21T14:16:31+00:00/orders_curated.parquet'
+2026-09-21 14:33:29,334 [INFO] Starting extraction for run_id=manual__2026-09-21T14:33:02+00:00, mode=full, year=2026, month=9
+2026-09-21 14:33:40,584 [INFO] Starting staging+curation for run_id=manual__2026-09-21T14:33:02+00:00
+2026-09-21 14:34:06,487 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T14:33:02+00:00
+2026-09-21 14:43:05,589 [INFO] Starting extraction for run_id=manual__2026-09-21T14:42:47+00:00, mode=full, year=2026, month=9
+2026-09-21 14:43:15,712 [INFO] Starting staging+curation for run_id=manual__2026-09-21T14:42:47+00:00
+2026-09-21 14:43:46,409 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T14:42:47+00:00
+2026-09-21 14:45:01,350 [INFO] Starting validation for run_id=manual__2026-09-21T14:42:47+00:00
+2026-09-21 23:03:49,187 [INFO] Starting partition load for year=2026, month=9, run_id=test
+2026-09-21 15:34:12,428 [INFO] Starting extraction for run_id=manual__2026-09-21T15:33:45+00:00, mode=full, year=2026, month=8
+2026-09-21 15:34:19,800 [INFO] Starting staging+curation for run_id=manual__2026-09-21T15:33:45+00:00
+2026-09-21 15:34:20,204 [ERROR] Transform failed for run_id=manual__2026-09-21T15:33:45+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/raw/run_id=manual__2026-09-21T15:33:45+00:00/orders.csv'
+2026-09-21 15:35:27,382 [INFO] Starting staging+curation for run_id=manual__2026-09-21T15:33:45+00:00
+2026-09-21 15:35:27,844 [ERROR] Transform failed for run_id=manual__2026-09-21T15:33:45+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/raw/run_id=manual__2026-09-21T15:33:45+00:00/orders.csv'
+2026-09-21 15:36:34,598 [INFO] Starting staging+curation for run_id=manual__2026-09-21T15:33:45+00:00
+2026-09-21 15:36:35,261 [ERROR] Transform failed for run_id=manual__2026-09-21T15:33:45+00:00: Missing file [Errno 2] No such file or directory: '/opt/airflow/project/data/raw/run_id=manual__2026-09-21T15:33:45+00:00/orders.csv'
+2026-09-21 15:38:52,418 [INFO] Starting extraction for run_id=manual__2026-09-21T15:38:38+00:00, mode=full, year=2026, month=8
+2026-09-21 15:39:00,932 [INFO] Starting staging+curation for run_id=manual__2026-09-21T15:38:38+00:00
+2026-09-21 15:39:20,846 [INFO] Starting load into PostgreSQL for run_id=manual__2026-09-21T15:38:38+00:00
+2026-09-21 15:40:51,765 [INFO] Starting validation for run_id=manual__2026-09-21T15:38:38+00:00

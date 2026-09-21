@@ -1,0 +1,28 @@
+Goal 1: Environment
+- Command: python -m src.cli validate-env 
+* Checks that your Python environment and configs are correct.
+- Command: docker compose up -d postgres
+* Starts the PostgreSQL database container in the background.
+
+Goal 2: Full Pipeline
+- Command: python -m src.cli run-all
+* Runs the entire pipeline (extract → transform → curate → load).
+- Command: python -m src.cli load
+* Explicitly loads curated data into PostgreSQL.
+- Command: python -m src.cli validate
+* Validates that the curated data exists and is non‑empty.
+
+Goal 3: Benchmark and Partition
+- Command: python -m src.cli benchmark --repeats 5
+* Runs performance benchmarking (like timing pipeline runs).
+- Command: python -m src.cli load-partition --year 2026 --month 1
+* Loads only the January 2026 partition into PostgreSQL.
+
+Goal 4: Airflow
+- Command: docker compose -f docker-compose.yml -f docker-compose.airflow.yml up -d airflow-webserver airflow-scheduler
+* Starts Airflow’s webserver and scheduler so you can run the pipeline as a DAG with tasks and dependencies.
+
+
+This sequence demonstrates that the repository can be run from a clean state by another student or engineer. 
+Each goal shows environment setup, full pipeline execution, benchmarking and partition loading, and orchestration 
+with Airflow. Evidence includes logs, screenshots, and database entries confirming successful runs.

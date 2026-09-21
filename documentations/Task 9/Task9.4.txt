@@ -1,0 +1,31 @@
+After reruuning the same partition load, it failed. This means that is is not duplicated and that the deduplication logic is working
+
+Below is the output after running it again:
+
+(.venv) C:\Users\Lenovo Thinkpad T460\project>python -m src.cli load-partition --year 2026 --month 1
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 126, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Lenovo Thinkpad T460\project\src\cli.py", line 114, in main
+    row_count = load_partition(args.year, args.month, run_id)
+  File "C:\Users\Lenovo Thinkpad T460\project\src\load\postgres.py", line 91, in load_partition
+    cur.execute(
+    ~~~~~~~~~~~^
+        "INSERT INTO audit.partition_loads (partition_key, loaded_at_utc, row_count, pipeline_run_id) VALUES (%s, %s, %s, %s)",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (partition_key, loaded_at_utc, count, run_id)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Lenovo Thinkpad T460\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg\cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UniqueViolation: duplicate key value violates unique constraint "partition_loads_pkey"
+DETAIL:  Key (partition_key)=(2026-01) already exists.
+
+
+and below is the output after running it once/the first time:
+(.venv) C:\Users\Lenovo Thinkpad T460\project>python -m src.cli load-partition --year 2026 --month 1
+Partition 2026-1 loaded with 2511 rows (run_id=run_20260921T110516Z_b83a96d4)

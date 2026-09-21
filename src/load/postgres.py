@@ -1,4 +1,7 @@
 import psycopg
+import pandas as pd
+from pathlib import Path
+from datetime import datetime, timezone
 from src.config import DB
 
 def upsert_curated(df, run_id: str) -> int:
@@ -65,10 +68,18 @@ def upsert_curated(df, run_id: str) -> int:
     return count
 
 
-def load_partition(df, year: int, month: int, run_id: str) -> int:
+def load_partition(year: int, month: int, run_id: str) -> int:
     """Load only a selected year/month partition and record audit.partition_loads."""
-    partition_df = df[(df['order_year'] == year) & (df['order_month'] == month)]
-    count = upsert_curated(partition_df, run_id)
+    # Directly use data/partitioned path (no config change)
+    partition_path = Path("data/partitioned") / f"order_year={year}" / f"order_month={month}"
+    df = pd.read_parquet(partition_path)
+
+    # UPSERT into curated.sales_order_lines
+    count = upsert_curated(df, run_id)
+
+    # Record the load in audit.partition_loads
+    partition_key = f"{year}-{month:02d}"   # e.g. "2026-01"
+    loaded_at_utc = datetime.now(timezone.utc)
 
     with psycopg.connect(
         host=DB["host"],
@@ -78,8 +89,9 @@ def load_partition(df, year: int, month: int, run_id: str) -> int:
     ) as conn:
         with conn.cursor() as cur:
             cur.execute(
-                "INSERT INTO audit.partition_loads (year, month, run_id, row_count) VALUES (%s, %s, %s, %s)",
-                (year, month, run_id, count)
+                "INSERT INTO audit.partition_loads (partition_key, loaded_at_utc, row_count, pipeline_run_id) VALUES (%s, %s, %s, %s)",
+                (partition_key, loaded_at_utc, count, run_id)
             )
         conn.commit()
+
     return count
