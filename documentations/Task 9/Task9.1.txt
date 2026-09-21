@@ -1,0 +1,13 @@
+I used SQLAlchemy because the system recommended it, and that I was worrying there might be some errors to encounter.
+
+Below is a quick snapshot of the output.
+
+(.venv) C:\Users\Lenovo Thinkpad T460\project>python -m src.benchmark.storage
+Using curated dataset from: data/curated\run_id=run_20260920T132227Z_1ff5112e
+C:\Users\Lenovo Thinkpad T460\project\src\benchmark\storage.py:96: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df2 = pd.read_sql("SELECT * FROM curated.sales_order_lines", conn)
+C:\Users\Lenovo Thinkpad T460\project\src\benchmark\storage.py:101: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df3 = pd.read_sql("SELECT * FROM curated.sales_order_lines WHERE status='COMPLETE'", conn)
+C:\Users\Lenovo Thinkpad T460\project\src\benchmark\storage.py:96: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df2 = pd.read_sql("SELECT * FROM curated.sales_order_lines", conn)
+C:\Users\Lenovo Thinkpad T460\project\src\benchmark\storage.py:101: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.

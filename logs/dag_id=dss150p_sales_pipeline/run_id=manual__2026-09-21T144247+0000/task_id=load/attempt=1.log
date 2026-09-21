@@ -1,0 +1,20 @@
+[2026-09-21T14:43:42.219+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-09-21T14:43:42.285+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dss150p_sales_pipeline.load manual__2026-09-21T14:42:47+00:00 [queued]>
+[2026-09-21T14:43:42.317+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dss150p_sales_pipeline.load manual__2026-09-21T14:42:47+00:00 [queued]>
+[2026-09-21T14:43:42.321+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 3
+[2026-09-21T14:43:42.355+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): load> on 2026-09-21 14:42:47+00:00
+[2026-09-21T14:43:42.386+0000] {standard_task_runner.py:72} INFO - Started process 2452 to run task
+[2026-09-21T14:43:42.405+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'dss150p_sales_pipeline', 'load', 'manual__2026-09-21T14:42:47+00:00', '--job-id', '66', '--raw', '--subdir', 'DAGS_FOLDER/dss150p_pipeline.py', '--cfg-path', '/tmp/tmps9sdtxl3']
+[2026-09-21T14:43:42.419+0000] {standard_task_runner.py:105} INFO - Job 66: Subtask load
+[2026-09-21T14:43:42.707+0000] {task_command.py:467} INFO - Running <TaskInstance: dss150p_sales_pipeline.load manual__2026-09-21T14:42:47+00:00 [running]> on host 5d7985e2e0b9
+[2026-09-21T14:43:43.184+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='dss150p' AIRFLOW_CTX_DAG_ID='dss150p_sales_pipeline' AIRFLOW_CTX_TASK_ID='load' AIRFLOW_CTX_EXECUTION_DATE='2026-09-21T14:42:47+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-09-21T14:42:47+00:00'
+[2026-09-21T14:43:43.200+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-09-21T14:43:43.292+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-09-21T14:43:43.296+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/airflow/project && PIPELINE_RUN_ID="manual__2026-09-21T14:42:47+00:00" python -m src.cli load --run-id "manual__2026-09-21T14:42:47+00:00"']
+[2026-09-21T14:43:43.332+0000] {subprocess.py:99} INFO - Output:
+[2026-09-21T14:44:55.609+0000] {subprocess.py:106} INFO - Load complete. Data inserted/updated in PostgreSQL.
+[2026-09-21T14:44:55.950+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-09-21T14:44:56.040+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-09-21T14:44:56.067+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dss150p_sales_pipeline, task_id=load, run_id=manual__2026-09-21T14:42:47+00:00, execution_date=20260921T144247, start_date=20260921T144342, end_date=20260921T144456
+[2026-09-21T14:44:56.241+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-09-21T14:44:56.312+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

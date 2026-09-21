@@ -1,0 +1,1 @@
+I triggered a DAG run with run_mode=partition and year=2026, month=9. The load task executed the load-partition command. The audit table shows that a new entry for partition_key=2026-09 with row_count 949 and correct pipeline_run_id.

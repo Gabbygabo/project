@@ -1,0 +1,1 @@
+Partitioning makes the system to touch the files it only needs, instead of scanning the whole dataset, especially if it is large. Making the query much faster and lesser memory usage.

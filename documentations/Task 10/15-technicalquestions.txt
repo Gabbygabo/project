@@ -1,0 +1,23 @@
+1. Why is `record_hash` useful for rerun-safe loading, and which columns should not be included in it?
+record_hash is useful because it makes each row unique and lets reruns avoid duplicate loads. Do not include columns like timestamps or run IDs since they change every run.
+
+2. Why should raw data usually be preserved even when staging/curated outputs are sufficient for analytics?
+Raw data should be preserved because it is the original source of truth. If staging or curated data is wrong, you can rebuild from raw.
+
+3.  What is the difference between a data-quality rejection and a system exception?
+A data-quality rejection means the data itself is invalid (like missing values). A system exception means the pipeline or system broke (like a crash or missing file).
+
+4. Why might Parquet outperform CSV for selected analytical workloads even if both contain the same rows?
+Parquet can be faster than CSV because it stores data in a compressed, column-based format, which makes certain queries more efficient.
+
+5.  Why is a DAG that contains all transformation logic directly considered harder to maintain?
+A DAG with all transformations directly inside is harder to maintain because the logic is tangled in one place, making changes or debugging more complex.
+
+6.  How do retries interact with idempotency? Give an example where retries without idempotency cause damage.
+Retries are safe only if tasks are idempotent. Without idempotency, retries can cause damage — for example, charging a customer twice if the same payment step is retried.
+
+7. What trade-off is introduced by partitioning too aggressively?
+Partitioning too aggressively creates too many small files or tables, which can slow queries and add overhead in managing them.
+
+8.  How would you adapt the pipeline if the source became an API or database instead of local files?
+If the source became an API or database, the pipeline would need connectors to fetch data directly, handle authentication, and adjust extraction logic to work with queries instead of local files.

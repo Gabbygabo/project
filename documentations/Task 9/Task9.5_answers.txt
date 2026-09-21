@@ -1,0 +1,14 @@
+1. Which file format was smallest on your machine, and what encoding/compression characteristics help explain the result? 
+Parquet was the smallest because it stores data in columns and applies compression, which reduces repeated values and saves space.
+
+2. Which representation was fastest for a full dataset read? Does that imply it is best for every workload?
+Parquet was fastest for reading the whole dataset, but that doesn’t mean it’s best for every workload. Databases like PostgreSQL are better when you only need specific rows or queries.
+
+3. How did filtered retrieval differ between Parquet and PostgreSQL? What additional PostgreSQL design (such as an index) could change the result?
+Parquet quickly skips irrelevant chunks because of columnar storage, while PostgreSQL scans indexes and rows but adding a proper index in PostgreSQL could make filtered queries faster.
+
+4. Why is JSON Lines generally more pipeline-friendly than one giant JSON array for append/stream-oriented processing?
+JSON Lines is pipeline‑friendly because you can process one record at a time and easily append new lines, while a giant array forces you to load everything at once.
+
+5. What happens if a partition key has extremely high cardinality or poor query locality?  
+If a partition key has too many unique values or poor locality, queries won’t benefit from partition pruning and the system may end up scanning almost everything, which can slow the performance.
